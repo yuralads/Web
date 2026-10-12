@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Фотогалерея</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <a href="#/" class="logo" aria-label="Фотогалерея, на главную">
+                <svg class="logo__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="6" y="6" width="36" height="36" rx="8"/>
+                    <path d="M7 29c5-6 10-6 15-1s10 5 19-3"/>
+                    <circle cx="33" cy="15" r="2.2" fill="currentColor" stroke="none"/>
+                </svg>
+                <span class="logo__text">Фотогалерея</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </div>
+</header>
+
+<!-- Сюда скрипт выводит текущую страницу: главная, фото, добавление -->
+<main class="main container" id="app"></main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__inner">
+            <a href="mailto:info@gmail.com" class="footer__mail">info@gmail.com</a>
+            <a href="#" class="footer__link">Информация о разработчике</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Модальное окно: регистрация и вход -->
+<div class="modal" id="auth-modal" aria-hidden="true">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__window" role="dialog" aria-modal="true" aria-label="Регистрация и вход">
+        <button type="button" class="modal__close" data-close-modal aria-label="Закрыть" data-icon="close"></button>
+
+        <div class="tabs" role="tablist">
+            <button type="button" class="tabs__tab" role="tab" data-tab="register">Регистрация</button>
+            <button type="button" class="tabs__tab" role="tab" data-tab="login">Авторизация</button>
+        </div>
+
+        <form id="register-form" class="auth-form" data-panel="register" novalidate>
+            <div class="auth-grid">
+                <div class="field field--wide">
+                    <div class="input">
+                        <input type="text" id="reg-name" name="name" placeholder=" " autocomplete="name">
+                        <label for="reg-name">Ваше имя</label>
+                    </div>
+                    <div class="field__error" data-error-for="name"></div>
+                </div>
+                <div class="field">
+                    <div class="input">
+                        <input type="email" id="reg-email" name="email" placeholder=" " autocomplete="email">
+                        <label for="reg-email">Email</label>
+                    </div>
+                    <div class="field__error" data-error-for="email"></div>
+                </div>
+                <div class="field">
+                    <div class="input">
+                        <input type="tel" id="reg-phone" name="phone" placeholder=" " autocomplete="tel">
+                        <label for="reg-phone">Мобильный телефон</label>
+                    </div>
+                    <div class="field__error" data-error-for="phone"></div>
+                </div>
+                <div class="field">
+                    <div class="input">
+                        <input type="password" id="reg-password" name="password" placeholder=" " autocomplete="new-password">
+                        <label for="reg-password">Пароль</label>
+                    </div>
+                    <div class="field__error" data-error-for="password"></div>
+                </div>
+                <div class="field">
+                    <div class="input">
+                        <input type="password" id="reg-password2" name="password_repeat" placeholder=" " autocomplete="new-password">
+                        <label for="reg-password2">Повторите пароль</label>
+                    </div>
+                    <div class="field__error" data-error-for="password_repeat"></div>
+                </div>
+            </div>
+
+            <div class="field field--check">
+                <label class="checkbox">
+                    <input type="checkbox" name="agree" value="1" class="checkbox__input">
+                    <span class="checkbox__box" data-icon="check"></span>
+                    <span>Согласен на обработку <a href="#" class="checkbox__link">персональных данных</a></span>
+                </label>
+                <div class="field__error" data-error-for="agree"></div>
+            </div>
+
+            <div class="form__error" data-error-for="common"></div>
+            <button type="submit" class="btn btn--primary btn--block" disabled>
+                <span data-icon="spinner"></span><span>Зарегистрироваться</span>
+            </button>
+            <p class="form-note"><span data-icon="alert"></span><span>Все поля обязательны для заполнения</span></p>
+        </form>
+
+        <form id="login-form" class="auth-form" data-panel="login" novalidate>
+            <div class="auth-grid">
+                <div class="field">
+                    <div class="input">
+                        <input type="email" id="login-email" name="email" placeholder=" " autocomplete="email">
+                        <label for="login-email">Email</label>
+                    </div>
+                    <div class="field__error" data-error-for="email"></div>
+                </div>
+                <div class="field">
+                    <div class="input">
+                        <input type="password" id="login-password" name="password" placeholder=" " autocomplete="current-password">
+                        <label for="login-password">Пароль</label>
+                    </div>
+                    <div class="field__error" data-error-for="password"></div>
+                </div>
+            </div>
+            <div class="form__error" data-error-for="common"></div>
+            <button type="submit" class="btn btn--primary btn--block" disabled>
+                <span data-icon="spinner"></span><span>Войти</span>
+            </button>
+            <p class="form-note"><span data-icon="alert"></span><span>Все поля обязательны для заполнения</span></p>
+            <p class="demo-hint">Тестовый аккаунт: <b>k@mail.ru</b> / <b>qwerty1</b></p>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
