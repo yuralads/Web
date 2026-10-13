@@ -98,6 +98,10 @@ h1, h2, p { margin: 0; }
 }
 .btn--primary { background: var(--accent); color: var(--white); }
 .btn--primary:hover:not(:disabled) { background: var(--accent-hover); }
+/* Нажатие (из UI-кита макета): фиолетовая обводка и фиолетовый текст на тёмном фоне */
+.btn--primary:active:not(:disabled) { background: var(--bg); border-color: var(--accent); color: var(--accent); }
+/* В белой модалке нажатая кнопка — на белом фоне, как в шаблоне */
+.modal .btn--primary:active:not(:disabled) { background: var(--white); }
 .btn--outline { background: transparent; border-color: var(--accent); color: var(--accent); }
 .btn--outline:hover { background: rgba(151, 71, 255, .12); }
 .btn--block { width: 100%; }
@@ -299,6 +303,7 @@ h1, h2, p { margin: 0; }
 .modal.is-open { display: flex; }
 .modal__overlay { position: absolute; inset: 0; background: rgba(11, 6, 27, .8); }
 .modal__window {
+    border-radius: 20px;
     position: relative;
     width: 100%;
     max-width: 600px;
@@ -424,8 +429,8 @@ body.modal-open { overflow: hidden; }
     .grid { grid-template-columns: repeat(3, 1fr); }
     .page-title { font-size: 40px; }
 
-    .photo-page { grid-template-columns: 1fr; }
-    .photo-page__image { max-width: 688px; }
+    /* Фото и блок с информацией — по центру страницы */
+    .photo-page { grid-template-columns: 1fr; max-width: 688px; margin: 0 auto; }
     .photo-page__title { font-size: 40px; }
     .photo-page__meta { margin-top: 20px; }
     .rating-row { margin-top: 40px; }
@@ -489,8 +494,8 @@ body.modal-open { overflow: hidden; }
     .title-input { font-size: 36px; }
     .new-photo__actions .btn { width: 100%; min-width: 0; }
 
-    .modal { padding: 0; align-items: flex-start; }
-    .modal__window { max-height: 100vh; padding: 30px 20px; }
+    .modal { padding: 10px; align-items: flex-start; }
+    .modal__window { max-height: calc(100vh - 20px); padding: 30px 20px; }
     .tabs { justify-content: flex-start; gap: 12px; }
     .tabs__tab { font-size: 20px; }
     .auth-grid { grid-template-columns: 1fr; }
